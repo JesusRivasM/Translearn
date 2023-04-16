@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "141442205054",
+    "project_id": "translearn-eb63e",
+    "storage_bucket": "translearn-eb63e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:141442205054:android:2a338721f7f98decc95f2f",
+        "android_client_info": {
+          "package_name": "com.example.translearn"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "141442205054-3lr06r3lvm2dhmau30rob4q5nochcokd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFZq3mH05gNeu4ZRYR8-z7oS2u6Ww9gHo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "141442205054-3lr06r3lvm2dhmau30rob4q5nochcokd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
