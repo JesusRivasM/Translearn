@@ -31,7 +31,7 @@ public class Login extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
-        Intent main = new Intent(getApplicationContext(),MainActivity.class);
+        Intent main = new Intent(getApplicationContext(), Menu.class);
         // Check if user is signed in (non-null) and update UI accordingly.
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
@@ -91,7 +91,7 @@ public class Login extends AppCompatActivity {
                                     } catch (InterruptedException e) {
                                         throw new RuntimeException(e);
                                     }
-                                    Intent main = new Intent(getApplicationContext(),MainActivity.class);
+                                    Intent main = new Intent(getApplicationContext(), Menu.class);
                                     startActivity(main);
                                     finish();
                                 } else {
