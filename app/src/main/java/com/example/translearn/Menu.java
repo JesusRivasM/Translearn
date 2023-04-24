@@ -14,6 +14,9 @@ public class Menu extends AppCompatActivity {
 
     FirebaseAuth auth;
     Button bLogout;
+
+    Button bTraducir;
+
     FirebaseUser usuario;
 
     @Override
@@ -23,6 +26,7 @@ public class Menu extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
         bLogout = findViewById(R.id.botonLogout);
+        bTraducir = findViewById(R.id.botonTraducir);
         usuario = auth.getCurrentUser();
 
         if(usuario == null){
@@ -31,6 +35,14 @@ public class Menu extends AppCompatActivity {
             finish();
         }
 
+        bTraducir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent irTraducir = new Intent(getApplicationContext(), Traducir.class);
+                startActivity(irTraducir);
+                finish();
+            }
+        });
         bLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
