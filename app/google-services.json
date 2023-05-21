@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "141442205054",
+    "firebase_url": "https://translearn-eb63e-default-rtdb.europe-west1.firebasedatabase.app",
     "project_id": "translearn-eb63e",
     "storage_bucket": "translearn-eb63e.appspot.com"
   },
