@@ -15,6 +15,11 @@
         android:theme="@style/Theme.Translearn"
         tools:targetApi="33">
         <activity
+            android:name=".Listas"
+            android:exported="false"
+            android:label="@string/title_activity_listas"
+            android:theme="@style/Theme.Translearn" />
+        <activity
             android:name=".Traducir"
             android:exported="false" />
         <activity
@@ -32,7 +37,7 @@
         </activity>
         <activity
             android:name=".Menu"
-            android:exported="true"></activity>
+            android:exported="true" />
     </application>
 
 </manifest>

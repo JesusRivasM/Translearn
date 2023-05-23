@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -34,7 +35,6 @@ public class Login extends AppCompatActivity {
         super.onStart();
         FirebaseApp.initializeApp(this);
         Intent main = new Intent(getApplicationContext(), Menu.class);
-        // Check if user is signed in (non-null) and update UI accordingly.
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null){
@@ -43,14 +43,12 @@ public class Login extends AppCompatActivity {
         }
     }
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login2);
         Intent intent = new Intent(getApplicationContext(),Register.class);
         mAuth = FirebaseAuth.getInstance();
-        //setContentView(R.layout.activity_register);
         editTextEmail = findViewById(R.id.email);
         editTextContra = findViewById(R.id.contra);
         botonLogin = findViewById(R.id.btn_login);

@@ -13,10 +13,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class Menu extends AppCompatActivity {
 
     FirebaseAuth auth;
-    Button bLogout;
-
-    Button bTraducir;
-
+    Button bLogout,bTraducir,bListas;
     FirebaseUser usuario;
 
     @Override
@@ -27,6 +24,7 @@ public class Menu extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         bLogout = findViewById(R.id.botonLogout);
         bTraducir = findViewById(R.id.botonTraducir);
+        bListas = findViewById(R.id.botonLista);
         usuario = auth.getCurrentUser();
 
         if(usuario == null){
@@ -35,6 +33,14 @@ public class Menu extends AppCompatActivity {
             finish();
         }
 
+        bListas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent irListas = new Intent(getApplicationContext(),Listas.class);
+                startActivity(irListas);
+                finish();
+            }
+        });
         bTraducir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,6 +58,5 @@ public class Menu extends AppCompatActivity {
                 finish();
             }
         });
-
     }
 }

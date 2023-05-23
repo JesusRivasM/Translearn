@@ -2,4 +2,5 @@
     <string name="app_name">Translearn</string>
     <string name="login">Login</string>
     <string name="click_to_go_register">click to go Register</string>
+    <string name="title_activity_listas">Listas</string>
 </resources>
