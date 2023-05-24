@@ -60,7 +60,6 @@ public class AdaptadorRV extends RecyclerView.Adapter<AdaptadorRV.ViewHolder> {
             aTraducir = itemView.findViewById(R.id.texto2);
             borrar = itemView.findViewById(R.id.borrar);
 
-
             borrar.setOnClickListener(v -> {
                 int position = getAdapterPosition();
                 borrarModelo(position);
@@ -77,11 +76,11 @@ public class AdaptadorRV extends RecyclerView.Adapter<AdaptadorRV.ViewHolder> {
                         if (snapshot.exists()) {
                             for (DataSnapshot childSnapshot : snapshot.getChildren()) {
                                 Traduccion traduccion = childSnapshot.getValue(Traduccion.class);
-                                System.out.println(traduccion.getaTraducir()+"  =  "+aTraducir.getText());
-                                System.out.println(traduccion.getTraducido()+"  =  "+traducido.getText());
-                                if((traduccion.getaTraducir() == aTraducir.getText()) && (traduccion.getTraducido() == traducido.getText())){
-                                    System.out.println("EUREKAAAAAAAAA");
-                                    reference.removeValue();
+                                if((traduccion.getaTraducir().equals(aTraducir.getText())) && (traduccion.getTraducido().equals(traducido.getText()))){
+                                    String key = childSnapshot.getKey();
+                                    System.out.println(key);
+                                    reference.child(key).removeValue();
+                                    return;
                                 }
                             }
                         } else {
