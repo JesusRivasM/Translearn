@@ -1,4 +1,4 @@
-package com.example.translearn;
+package com.example.translearn.modelos;
 
 public class Traduccion {
     private String aTraducir;

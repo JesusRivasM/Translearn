@@ -7,12 +7,14 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.provider.MediaStore;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,8 +22,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.FirebaseOptions;
+import com.example.translearn.modelos.Traduccion;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -40,12 +41,13 @@ import com.google.mlkit.vision.text.TextRecognition;
 import com.google.mlkit.vision.text.TextRecognizer;
 import com.google.mlkit.vision.text.latin.TextRecognizerOptions;
 
+
 public class Traducir extends AppCompatActivity {
 
-    private Button botonTraducir,botonPasar;
+    private Button botonTraducir;
     private ImageButton botonGuardar,botonFotoPermisos;
     private TextInputEditText textoATraducir,textoTraducido;
-    private Bitmap imageBitmap;
+    private Bitmap bitmap;
     private DatabaseReference reference;
     static  final int REQUEST_IMAGE_CAPTURE=1;
     @Override
@@ -84,12 +86,11 @@ public class Traducir extends AppCompatActivity {
         textoTraducido = findViewById(R.id.texTraducido);
         botonGuardar = findViewById(R.id.guardarTraduc);
         botonFotoPermisos = findViewById(R.id.fotoYPermisos);
-        botonPasar = findViewById(R.id.modoFoto);
         reference = FirebaseDatabase.getInstance().getReference();
         botonTraducir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Traducir("es","fr");
+                Traducir("fr","es");
             }
         });
 
@@ -101,12 +102,15 @@ public class Traducir extends AppCompatActivity {
                 }else{
                     pedirPermisos();
                 }
-            }
-        });
-        botonPasar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v){
-                detectarTexto();
+                new CountDownTimer(2500, 1000) {
+                    @Override
+                    public void onTick(long millisUntilFinished) {
+                    }
+
+                    @Override
+                    public void onFinish() {
+                    }
+                }.start();
             }
         });
 
@@ -125,8 +129,8 @@ public class Traducir extends AppCompatActivity {
         Toast.makeText(Traducir.this, "guardado con exito", Toast.LENGTH_SHORT).show();
     }
 
-
-    public void Traducir(String idiomaBase,String idiomaFinal){
+    //METODO OBTENIDO EN PARTE GRACIAS A LA LIBRERÍA DE FIREBASE ML KIT.
+    public void Traducir(String idiomaBase, String idiomaFinal){
         String aTraducir;
         aTraducir = String.valueOf(textoATraducir.getText());
 
@@ -147,8 +151,6 @@ public class Traducir extends AppCompatActivity {
                         new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void v) {
-                                // Model downloaded successfully. Okay to start translating.
-                                // (Set a flag, unhide the translation UI, etc.)
                                 Toast.makeText(Traducir.this, "MODELO DESCARGADO", Toast.LENGTH_SHORT).show();
                                 Traductor.translate(aTraducir)
                                         .addOnSuccessListener(
@@ -165,8 +167,6 @@ public class Traducir extends AppCompatActivity {
                                                 new OnFailureListener() {
                                                     @Override
                                                     public void onFailure(@NonNull Exception e) {
-                                                        // Error.
-                                                        // ...
                                                         Toast.makeText(Traducir.this, "FALLO AL TRADUCIR", Toast.LENGTH_SHORT).show();
                                                         Traductor.close();
                                                     }
@@ -175,13 +175,10 @@ public class Traducir extends AppCompatActivity {
                             }
                         })
                 .addOnFailureListener(
-                        new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                // Model couldn’t be downloaded or other internal error.
-                                // ...
-                                Toast.makeText(Traducir.this, "Error al descargar el modelo", Toast.LENGTH_SHORT).show();
-                            }
+                        e -> {
+                            // Model couldn’t be downloaded or other internal error.
+                            // ...
+                            Toast.makeText(Traducir.this, "Error al descargar el modelo", Toast.LENGTH_SHORT).show();
                         });
 
     }
@@ -198,7 +195,6 @@ public class Traducir extends AppCompatActivity {
     }
 
     private  void hacerFoto(){
-
         Intent hacerFoto= new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (hacerFoto.resolveActivity(getPackageManager())!=null) {
             startActivityForResult(hacerFoto,REQUEST_IMAGE_CAPTURE);
@@ -225,25 +221,22 @@ public class Traducir extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode==REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK){
             Bundle extras= data.getExtras();
-            imageBitmap=(Bitmap)  extras.get("data");
+            bitmap=(Bitmap)  extras.get("data");
+            detectarTexto(bitmap);
         }
+
     }
 
-    private void detectarTexto() {
-        InputImage image = InputImage.fromBitmap(imageBitmap,0);
-        TextRecognizer recognizer= TextRecognition.getClient(TextRecognizerOptions.DEFAULT_OPTIONS);
-        Task<Text> result= recognizer.process(image).addOnSuccessListener(new OnSuccessListener<Text>() {
+    private void detectarTexto(Bitmap bitmap) {
+        InputImage image = InputImage.fromBitmap(bitmap,0);
+        TextRecognizer textRecognizer= TextRecognition.getClient(TextRecognizerOptions.DEFAULT_OPTIONS);
+        Task<Text> result= textRecognizer.process(image).addOnSuccessListener(new OnSuccessListener<Text>() {
             @Override
             public void onSuccess(Text text) {
                 StringBuilder result = new StringBuilder();
                 for(Text.TextBlock block: text.getTextBlocks()){
                     String blockText = block.getText();
-                    Point[] blockCornerPoint = block.getCornerPoints();
-                    Rect blockframe = block.getBoundingBox();
                     for (Text.Line line : block.getLines()){
-                        String lineText = line.getText();
-                        Point[] lineCornerPoiint = line.getCornerPoints();
-                        Rect linRect = line.getBoundingBox();
                         for (Text.Element element : line.getElements()){
                             String elementText = element.getText();
                             result.append(elementText);
@@ -255,7 +248,7 @@ public class Traducir extends AppCompatActivity {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(Traducir.this, "Fail to detect text from image" +e.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(Traducir.this, "No se pudo detectar una imagen" +e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 

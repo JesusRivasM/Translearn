@@ -61,7 +61,7 @@
         android:id="@+id/respuesta3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="traducción en español..." />
+        android:hint="traducción en francés..." />
 
     <Button
         android:id="@+id/check3"
@@ -80,7 +80,7 @@
         android:id="@+id/respuesta4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="traducción en español..." />
+        android:hint="traducción en francés..." />
 
     <Button
         android:id="@+id/check4"
@@ -99,7 +99,7 @@
         android:id="@+id/respuesta5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="traducción en español..." />
+        android:hint="traducción en francés..." />
 
     <Button
         android:id="@+id/check5"

@@ -8,7 +8,7 @@
 
     <Button
         android:id="@+id/botonQuizTraduccion"
-        android:text="FRANCES-ESPAÑOL"
+        android:text="ESPAÑOL-FRANCES"
         android:layout_width="300dp"
         android:layout_height="80dp"
         android:background="#87acb3"
@@ -18,7 +18,7 @@
 
     <Button
         android:id="@+id/botonQuizOriginal"
-        android:text="ESPAÑOL-FRANCES"
+        android:text="FRANCES-ESPAÑOL"
         android:layout_width="300dp"
         android:layout_height="80dp"
         android:background="#c9e0c8"

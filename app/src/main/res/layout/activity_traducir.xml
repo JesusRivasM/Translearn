@@ -8,7 +8,7 @@
     android:background="#f9f7f6">
 
     <TextView
-        android:text="ESPAÑOL-FRANCÉS"
+        android:text="FRANCÉS-ESPAÑOL"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="24sp"
@@ -62,13 +62,6 @@
             android:layout_margin="20dp"
             android:scaleType="centerInside"
             android:background="#f9f7f6"/>
-
-        <Button
-            android:id="@+id/modoFoto"
-            android:text="Foto-texto"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp" />
 
         <ImageButton
             android:id="@+id/guardarTraduc"
