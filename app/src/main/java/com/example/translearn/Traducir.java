@@ -17,6 +17,7 @@ import android.provider.MediaStore;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.google.firebase.FirebaseApp;
@@ -41,12 +42,11 @@ import com.google.mlkit.vision.text.latin.TextRecognizerOptions;
 
 public class Traducir extends AppCompatActivity {
 
-    private Button botonTraducir, botonPasar,botonFotoPermisos,botonGuardar;
+    private Button botonTraducir,botonPasar;
+    private ImageButton botonGuardar,botonFotoPermisos;
     private TextInputEditText textoATraducir,textoTraducido;
     private Bitmap imageBitmap;
-
     private DatabaseReference reference;
-
     static  final int REQUEST_IMAGE_CAPTURE=1;
     @Override
     public void onStart() {
@@ -82,10 +82,9 @@ public class Traducir extends AppCompatActivity {
         botonTraducir = findViewById(R.id.botonTraducir);
         textoATraducir = findViewById(R.id.texATraducir);
         textoTraducido = findViewById(R.id.texTraducido);
-        botonPasar = findViewById(R.id.modoFoto);
-        botonPasar = findViewById(R.id.modoFoto);
-        botonFotoPermisos = findViewById(R.id.fotoYPermisos);
         botonGuardar = findViewById(R.id.guardarTraduc);
+        botonFotoPermisos = findViewById(R.id.fotoYPermisos);
+        botonPasar = findViewById(R.id.modoFoto);
         reference = FirebaseDatabase.getInstance().getReference();
         botonTraducir.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,7 +97,6 @@ public class Traducir extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                if (verificarPermisos()){
-                    hacerFoto();
                     hacerFoto();
                 }else{
                     pedirPermisos();
@@ -228,7 +226,6 @@ public class Traducir extends AppCompatActivity {
         if(requestCode==REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK){
             Bundle extras= data.getExtras();
             imageBitmap=(Bitmap)  extras.get("data");
-            //captureIV.setImageBitmap(imageBitmap);
         }
     }
 

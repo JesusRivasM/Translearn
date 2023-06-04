@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.MenuItem;
@@ -113,7 +114,9 @@ public class QuizTraduc extends AppCompatActivity {
                    respuesta1.setBackgroundColor(Color.GREEN);
                     nota = nota + 1;
                 }else{
-                    respuesta1.setBackgroundColor(Color.RED);
+                    respuesta1.setBackgroundColor(Color.parseColor("#FC8282"));
+                    respuesta1.setText(listaTraducciones.get(0).getTraducido());
+                    respuesta1.setTypeface(null, Typeface.BOLD);
                 }
                    respuesta1.setEnabled(false);
                    check1.setEnabled(false);
@@ -129,7 +132,9 @@ public class QuizTraduc extends AppCompatActivity {
                     respuesta2.setBackgroundColor(Color.GREEN);
                     nota = nota + 1;
                 }else{
-                    respuesta2.setBackgroundColor(Color.RED);
+                    respuesta2.setBackgroundColor(Color.parseColor("#FC8282"));
+                    respuesta2.setText(listaTraducciones.get(1).getTraducido());
+                    respuesta2.setTypeface(null, Typeface.BOLD);
                 }
                 respuesta2.setEnabled(false);
                 check2.setEnabled(false);
@@ -145,7 +150,9 @@ public class QuizTraduc extends AppCompatActivity {
                     respuesta3.setBackgroundColor(Color.GREEN);
                     nota = nota + 1;
                 }else{
-                    respuesta3.setBackgroundColor(Color.RED);
+                    respuesta3.setBackgroundColor(Color.parseColor("#FC8282"));
+                    respuesta3.setText(listaTraducciones.get(2).getTraducido());
+                    respuesta3.setTypeface(null, Typeface.BOLD);
                 }
                 respuesta3.setEnabled(false);
                 check3.setEnabled(false);
@@ -161,7 +168,9 @@ public class QuizTraduc extends AppCompatActivity {
                     respuesta4.setBackgroundColor(Color.GREEN);
                     nota = nota + 1;
                 }else{
-                    respuesta4.setBackgroundColor(Color.RED);
+                    respuesta4.setBackgroundColor(Color.parseColor("#FC8282"));
+                    respuesta4.setText(listaTraducciones.get(3).getTraducido());
+                    respuesta4.setTypeface(null, Typeface.BOLD);
                 }
                 respuesta4.setEnabled(false);
                 check4.setEnabled(false);
@@ -178,7 +187,9 @@ public class QuizTraduc extends AppCompatActivity {
                     respuesta5.setBackgroundColor(Color.GREEN);
                     nota = nota + 1;
                 }else{
-                    respuesta5.setBackgroundColor(Color.RED);
+                    respuesta5.setBackgroundColor(Color.parseColor("#FC8282"));
+                    respuesta5.setText(listaTraducciones.get(4).getTraducido());
+                    respuesta5.setTypeface(null, Typeface.BOLD);
                 }
                 respuesta5.setEnabled(false);
                 check5.setEnabled(false);
@@ -192,7 +203,7 @@ public class QuizTraduc extends AppCompatActivity {
         if (contadorCheck == 5){
             String stringNota = String.valueOf(nota);
             calificacion.setText(stringNota +"/5");
-            if (nota<=2){calificacion.setTextColor(Color.RED);}else{
+            if (nota<=2){calificacion.setTextColor(Color.parseColor("#FC8282"));}else{
                 calificacion.setTextColor(Color.GREEN);
             }
             new CountDownTimer(2500, 1000) {

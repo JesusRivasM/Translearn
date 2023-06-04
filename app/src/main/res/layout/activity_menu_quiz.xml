@@ -1,9 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MenuQuiz">
+    android:gravity="center"
+    android:background="#c4d5e0">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <Button
+        android:id="@+id/botonQuizTraduccion"
+        android:text="FRANCES-ESPAÑOL"
+        android:layout_width="300dp"
+        android:layout_height="80dp"
+        android:background="#87acb3"
+        android:textColor="#f9f7f6"
+        android:textSize="18sp"
+        android:layout_margin="16dp"/>
+
+    <Button
+        android:id="@+id/botonQuizOriginal"
+        android:text="ESPAÑOL-FRANCES"
+        android:layout_width="300dp"
+        android:layout_height="80dp"
+        android:background="#c9e0c8"
+        android:textColor="#f2f1df"
+        android:textSize="18sp"
+        android:layout_margin="16dp"/>
+
+</LinearLayout>

@@ -1,64 +1,65 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
     android:padding="20dp"
-    android:background="#c4d5e0"
-    android:layout_height="match_parent"
-    tools:context=".Register">
+    android:background="#c4d5e0">
 
     <TextView
-        android:text="REGISTRATE-TRANLEARN"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="ENTRAR-TRANSLEARN"
         android:textSize="24sp"
         android:textColor="#87acb3"
         android:gravity="center"
-        android:layout_marginBottom="24dp"/>
+        android:layout_marginBottom="24dp" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp">
+
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/emailr"
-            android:hint="E-mail.."
+            android:id="@+id/email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:hint="E-mail..."
             android:textColorHint="#f2f1df" />
+
     </com.google.android.material.textfield.TextInputLayout>
+
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp">
+
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/contrar"
-            android:hint="Contraseña.."
+            android:id="@+id/contra"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColorHint="#f2f1df"
-            android:layout_marginBottom="16dp"/>
+            android:hint="Contraseña..."
+            android:textColorHint="#f2f1df" />
+
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/btn_registro"
-        android:text="REGISTRARSE"
+        android:id="@+id/btn_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ENTRAR"
         android:textColor="#FFFFFF"
         android:background="#87acb3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_marginBottom="24dp" />
 
-
     <TextView
-        android:id="@+id/irLogin"
-        android:text="ir al Login"
-        android:gravity="center"
-        android:layout_width="match_parent"
+        android:id="@+id/my_text_view"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="¿No tienes cuenta? REGISTRATE AQUÍ"
         android:textColor="#f9f7f6"
+        android:gravity="center"
         android:textSize="18sp"
-        android:layout_marginBottom="24dp"
-        />
+        android:layout_marginBottom="24dp" />
+
 </LinearLayout>

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -13,7 +14,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class Menu extends AppCompatActivity {
 
     FirebaseAuth auth;
-    Button bLogout,bTraducir,bListas,bQuiz;
+    ImageButton bLogout,bListas,bQuiz,bTraducir;
     FirebaseUser usuario;
 
     @Override
@@ -63,7 +64,7 @@ public class Menu extends AppCompatActivity {
         bQuiz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent irQuiz = new Intent(getApplicationContext(), QuizTraduc.class);
+                Intent irQuiz = new Intent(getApplicationContext(), MenuQuiz.class);
                 startActivity(irQuiz);
                 finish();
             }
